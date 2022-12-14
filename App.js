@@ -4,7 +4,7 @@ import {
   View,
   StyleSheet,
   Platform,
-  AsyncStorage ,
+  AsyncStorage,
 } from 'react-native';
 import Constants from 'expo-constants';
 
@@ -23,9 +23,9 @@ const STATUSES = {
 export default function App() {
   const [focusSubject, setFocusSubject] = useState(null);
   const [focusHistory, setFocusHistory] = useState([]);
-
+  console.log("Good Job");
   const addFocusHistorySubjectWithStatus = (subject, status) => {
-    setFocusHistory([...focusHistory, { key:String(focusHistory.length +1) ,subject, status }]);
+    setFocusHistory([...focusHistory, { key: String(focusHistory.length + 1), subject, status }]);
   };
   const onClear = () => {
     setFocusHistory([]);
@@ -33,7 +33,7 @@ export default function App() {
 
   const saveFocusHistory = async () => {
     try {
-      await AsyncStorage .setItem(
+      await AsyncStorage.setItem(
         'focusHistory',
         JSON.stringify(focusHistory)
       );
@@ -44,7 +44,7 @@ export default function App() {
 
   const loadFocusHistory = async () => {
     try {
-      const history = await AsyncStorage .getItem('focusHistory');
+      const history = await AsyncStorage.getItem('focusHistory');
 
       if (history && JSON.parse(history).length) {
         setFocusHistory(JSON.parse(history));
